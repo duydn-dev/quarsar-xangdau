@@ -1,0 +1,8 @@
+/* app global css */
+@font-face {
+    font-family: Roboto;
+    src: url('../assets/font/Roboto-Regular.ttf');
+}
+.q-toolbar{
+    min-height: 70px;
+}
