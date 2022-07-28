@@ -53,7 +53,8 @@ module.exports = configure(function (ctx) {
         node: 'node16'
       },
       env: {
-        ApiUrl: ctx.dev ? 'https://localhost:5005/' : 'https://prod.api.com/'
+        ApiUrl: ctx.dev ? 'https://localhost:5005/' : 'https://prod.api.com/',
+        StorageUrl: "http://qlkdxd-storage.beta.o2tech.vn/"
       },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'

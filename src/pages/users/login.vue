@@ -13,7 +13,7 @@
             <q-card
               square
               class="shadow-24"
-              style="width: 400px; height: 530px"
+              style="width: 400px; height: 600px"
             >
               <q-card-section class="bg-blue-8 text-center">
                 <img src="/src/assets/logo.svg" class="full-width" />
@@ -57,6 +57,24 @@
                       <q-icon name="lock" />
                     </template>
                   </q-input>
+
+                  <q-input
+                    square
+                    clearable
+                    v-model="googleAuthenCode"
+                    type="text"
+                    label="Mã xác thực"
+                    lazy-rules
+                    :rules="[
+                      (val) =>
+                        (val && val.length > 0) ||
+                        'Mã xác thực không thể để trống !',
+                    ]"
+                  >
+                    <template v-slot:prepend>
+                      <q-icon name="code" />
+                    </template>
+                  </q-input>
                 </q-form>
               </q-card-section>
               <q-card-actions class="q-px-lg">
@@ -95,14 +113,16 @@ export default {
     const router = useRouter();
     const username = ref();
     const password = ref();
+    const googleAuthenCode = ref();
     const $q = useQuasar();
 
     const login = async () => {
       const request = {
         userName: username.value,
         passWord: password.value,
+        googleAuthenCode: googleAuthenCode.value
       };
-      const { data } = await api.post("api/User/get-token", request);
+      const { data } = await api.post("api/User/login", request);
       if (data.success) {
         $store.dispatch("users/userLoginAction", data.responseData);
         setTokenAndUser(data.responseData);
@@ -144,6 +164,7 @@ export default {
     return {
       username,
       password,
+      googleAuthenCode,
       login,
     };
   },
