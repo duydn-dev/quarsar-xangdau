@@ -19,3 +19,20 @@
     border-left: 3px solid rgb(247, 86, 11);
     background-color: #e0dede;
 }
+.custom-q-contain{
+    padding-top: 50px !important;
+}
+.custom-q-page{
+    padding: 20px;
+}
+.contain-box{
+    background-color: #fff;
+    border-radius: 5px;
+    min-height: 500px;
+}
+.txt-title{
+    margin: 20px 0px 15px 0px;
+}
+.contain-box-filter, .contain-box-body{
+    padding: 20px 10px;
+}

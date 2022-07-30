@@ -39,7 +39,7 @@
         </q-item-section>
       </q-item>
       <q-separator inset spaced></q-separator>
-      <q-item clickable v-close-popup>
+      <q-item clickable v-close-popup @click="logOut">
         <q-item-section avatar>
           <q-avatar
             icon="subdirectory_arrow_right"
@@ -57,12 +57,22 @@
 
 <script setup>
 import { useStore } from "vuex";
+import { useQuasar } from "quasar";
 import { computed } from "vue";
+import { useRouter } from "vue-router";
+const router = useRouter();
+const $q = useQuasar();
 const $store = useStore();
 const storageUrl = process.env.StorageUrl;
 const currentUser = computed({
   get: () => $store.state.users.currentUser,
 });
+const logOut = () => {
+  if ($q.cookies.get("cookie_default")) {
+    $q.cookies.remove("cookie_default");
+    router.push("/login");
+  }
+};
 </script>
 
 <style lang="scss" scoped>

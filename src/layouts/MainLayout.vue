@@ -23,7 +23,7 @@
         <menu-left />
       </q-drawer>
 
-      <q-page-container>
+      <q-page-container class="bg-grey-3 custom-q-contain">
         <router-view />
       </q-page-container>
     </q-layout>
