@@ -24,7 +24,9 @@
       </q-drawer>
 
       <q-page-container class="bg-grey-3 custom-q-contain">
-        <router-view />
+        <suspense>
+          <router-view />
+        </suspense>
       </q-page-container>
     </q-layout>
   </q-intersection>

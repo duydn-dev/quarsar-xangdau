@@ -57,7 +57,7 @@
                       </template>
                     </q-input>
 
-                    <q-input
+                    <!-- <q-input
                       square
                       clearable
                       v-model="googleAuthenCode"
@@ -73,7 +73,7 @@
                       <template v-slot:prepend>
                         <q-icon name="code" />
                       </template>
-                    </q-input>
+                    </q-input> -->
                   </q-form>
                 </q-card-section>
                 <q-card-actions class="q-px-lg">
@@ -122,13 +122,13 @@ export default {
         passWord: password.value,
         googleAuthenCode: googleAuthenCode.value,
       };
-      const { data } = await api.post("api/User/login", request);
+      const { data } = await api.post("api/User/get-token", request);
       if (data.success) {
         $store.dispatch("users/userLoginAction", data.responseData);
         setTokenAndUser(data.responseData);
         api.defaults.headers.common["Authorization"] =
           "Bearer " + data.responseData.token;
-        router.push("/");
+        router.push({path: "/"});
       } else {
         $q.notify({
           color: "negative",

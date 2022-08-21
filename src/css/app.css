@@ -36,3 +36,31 @@
 .contain-box-filter, .contain-box-body{
     padding: 20px 10px;
 }
+.contain-box-body table th{
+    font-size: 14px;
+    font-weight: bold;
+    padding: 12px 15px;
+}
+.contain-box-body table thead tr {
+    background-color: #009879;
+    color: #ffffff;
+    text-align: left;
+}
+.avatar-wrapper{
+    width: 150px;
+    height: 150px;
+    margin: auto;
+    object-fit: cover;
+}
+.avatar-wrapper:hover .avatar-overlay{
+    display: block;
+    transition: 2s;
+}
+.avatar-chooser{
+    border-radius: 50%;
+    height: 150px;
+    object-fit: cover;
+}
+.avatar-overlay{
+    display: none;
+}

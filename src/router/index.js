@@ -4,6 +4,7 @@ import routes from './routes';
 import constants from '../components/_common/constants';
 import {Cookies} from 'quasar';
 import CryptoJS from "crypto-js";
+import {api} from 'boot/axios';
 
 /*
  * If not building with SSR mode, you can
@@ -15,7 +16,8 @@ import CryptoJS from "crypto-js";
  */
 
 export default route(function ( { store, ssrContext }) {
-  const cookies = process.env.SERVER
+  const getAuth = () => {
+    const cookies = process.env.SERVER
     ? Cookies.parseSSR(ssrContext)
     : Cookies //
     let isAuth = false;
@@ -23,10 +25,13 @@ export default route(function ( { store, ssrContext }) {
       const bytes  = CryptoJS.AES.decrypt(cookies.get('cookie_default'), constants.userKey);
       const user = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
       if(new Date(user.expire) > new Date()){
+        api.defaults.headers.common["Authorization"] = "Bearer " + user.token;
         store.dispatch("users/userLoginAction", user);
         isAuth = true;
       }
     }
+    return isAuth;
+  }
   const createHistory = process.env.SERVER
     ? createMemoryHistory
     : (process.env.VUE_ROUTER_MODE === 'history' ? createWebHistory : createWebHashHistory)
@@ -44,7 +49,7 @@ export default route(function ( { store, ssrContext }) {
   Router.beforeEach((to, from, next) => {
     const menu = constants.menuLeft.find(n => n.name == to.name);
     if (menu && menu.auth) {
-      if(isAuth) next();
+      if(getAuth()) next();
       else next({name: "login"});
     }
     else {
