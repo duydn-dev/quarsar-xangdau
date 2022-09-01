@@ -3,7 +3,7 @@ export default {
         {
             title: "Trang chủ",
             icon: "home",
-            link: "/",
+            link: "/home",
             name: "dashboard",
             auth: true
         },

@@ -2,9 +2,12 @@
 const routes = [
   {
     path: '/',
+    redirect: to => {
+      return { path: '/home' }
+    },
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', name: 'dashboard', auth: true, component: () => import('pages/IndexPage.vue') },
+      { path: 'home', name: 'dashboard', auth: true, component: () => import('pages/IndexPage.vue') },
       { path: 'users', name: 'users', auth: true, component: () => import('pages/users/users.vue') }
     ]
   },

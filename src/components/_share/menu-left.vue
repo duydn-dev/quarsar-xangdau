@@ -1,23 +1,13 @@
 <template>
-  <q-list>
-    <q-item
-      v-for="item in linksList"
-      :key="item.link"
-      clickable
-      @click="menuClick(item)"
-      :class="`menu-left-item ${activeMenu == item.name ? 'active': ''}`"
-    >
-      <q-item-section v-if="item.icon" avatar>
+  <ul class="aside">
+    <li v-for="item in linksList" :key="item.link" clickable >
+      <router-link :to="item.link">
         <q-icon :name="item.icon" />
-      </q-item-section>
-
-      <q-item-section>
-        <q-item-label>{{ item.title }}</q-item-label>
-      </q-item-section>
-    </q-item>
-  </q-list>
+        {{item.title}}
+      </router-link>
+    </li>
+  </ul>
 </template>
-
 <script>
 import { defineComponent, ref } from "vue";
 import constants from "../_common/constants";
@@ -31,12 +21,12 @@ export default defineComponent({
     const activeMenu = ref(linksList[0].name);
     const menuClick = (item) => {
       activeMenu.value = item.name;
-      router.push(item.link)
-    }
+      router.push(item.link);
+    };
     return {
       activeMenu,
       linksList,
-      menuClick
+      menuClick,
     };
   },
 });

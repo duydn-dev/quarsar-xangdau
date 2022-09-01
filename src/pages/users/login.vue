@@ -27,6 +27,7 @@
                     <q-input
                       square
                       v-model="username"
+                      @keydown.enter.prevent="login"
                       type="text"
                       label="Tài khoản"
                       lazy-rules
@@ -43,6 +44,7 @@
                     <q-input
                       square
                       v-model="password"
+                      @keydown.enter.prevent="login"
                       type="password"
                       label="Mật khẩu"
                       lazy-rules
@@ -99,7 +101,7 @@
 </template>
 
 <script>
-import { ref } from "vue";
+import { ref, getCurrentInstance } from "vue";
 import { api } from "boot/axios";
 import { useQuasar } from "quasar";
 import { useStore } from "vuex";
@@ -109,6 +111,7 @@ import constants from "../../components/_common/constants";
 
 export default {
   setup() {
+    const _this = getCurrentInstance().appContext.config.globalProperties;
     const $store = useStore();
     const router = useRouter();
     const username = ref();
@@ -122,28 +125,37 @@ export default {
         passWord: password.value,
         googleAuthenCode: googleAuthenCode.value,
       };
-      const { data } = await api.post("api/User/get-token", request);
-      if (data.success) {
-        $store.dispatch("users/userLoginAction", data.responseData);
-        setTokenAndUser(data.responseData);
+      $q.loading.show({
+        message: "Đang thực hiện, vui lòng chờ trong giây lát...",
+        boxClass: "bg-grey-2 text-grey-9",
+        spinnerColor: "primary",
+      });
+
+      try {
+        const { data } = await _this.$userService.getToken(request);
+        console.log(data);
+        $store.dispatch("users/userLoginAction", data);
+        setTokenAndUser(data);
         api.defaults.headers.common["Authorization"] =
-          "Bearer " + data.responseData.token;
-        router.push({path: "/"});
-      } else {
-        $q.notify({
-          color: "negative",
-          textColor: "white",
-          position: "top",
-          message: data.message,
-          icon: "report_problem",
-          timeout: 1500,
-          actions: [
-            {
-              icon: "close",
-              "aria-label": "Dismiss",
-            },
-          ],
-        });
+          "Bearer " + data.token;
+        $q.loading.hide();
+        router.push({ path: "/" });
+      } catch (error) {
+        $q.loading.hide();
+          $q.notify({
+            color: "negative",
+            textColor: "white",
+            position: "top",
+            message: error.response.data,
+            icon: "report_problem",
+            timeout: 1500,
+            actions: [
+              {
+                icon: "close",
+                "aria-label": "Dismiss",
+              },
+            ],
+          });
       }
     };
 

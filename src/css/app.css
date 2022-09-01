@@ -9,16 +9,84 @@
 }
 
 .menu-left-box {
-    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px
+    box-shadow: rgb(0 0 0 / 15%) 1.95px 1.95px 2.6px;
+    color: #fff;
+    background-image: linear-gradient(30deg, #0048bd, #44a7fd);
 }
-.menu-left-item:hover{
-    border-left: 3px solid rgb(247, 86, 11);
-    background-color: #f5f5f5;
-}
-.menu-left-item.active{
-    border-left: 3px solid rgb(247, 86, 11);
-    background-color: #e0dede;
-}
+.aside li{
+    list-style-type: none;
+  }
+  .aside a {
+    font-size: 15px;
+    color: #fff;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
+    display: flex;
+    align-items: center;
+  }
+  
+  .aside a:hover, .router-link-active.router-link-exact-active{
+    color: #2a8cdf;
+    background: #fff;
+    outline: none;
+    position: relative;
+    background-color: #fff;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+  }
+  
+  .aside a i {
+    margin-right: 20px;
+    font-size: 20px;
+  }
+  
+  .aside a:hover::after, .router-link-active.router-link-exact-active::after {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    bottom: 100%;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    border-bottom-right-radius: 18px;
+    box-shadow: 0 20px 0 0 #fff;
+  }
+  
+  .aside a:hover::before, .router-link-active.router-link-exact-active::before {
+    content: "";
+    position: absolute;
+    background-color: transparent;
+    top: 38px;
+    right: 0;
+    height: 35px;
+    width: 35px;
+    border-top-right-radius: 18px;
+    box-shadow: 0 -20px 0 0 #fff;
+  }
+  
+  .aside p {
+    margin: 0;
+    padding: 40px 0;
+  }
+  
+  .social {
+    height: 0;
+  }
+  
+  .social i:before {
+    width: 14px;
+    height: 14px;
+    font-size: 14px;
+    position: fixed;
+    color: #fff;
+    background: #0077b5;
+    padding: 10px;
+    border-radius: 50%;
+    top: 5px;
+    right: 5px;
+  }
 .custom-q-contain{
     padding-top: 50px !important;
 }
@@ -42,7 +110,7 @@
     padding: 12px 15px;
 }
 .contain-box-body table thead tr {
-    background-color: #009879;
+    background-image: linear-gradient(30deg,#44a7fd, #1996e0);
     color: #ffffff;
     text-align: left;
 }
@@ -63,4 +131,12 @@
 }
 .avatar-overlay{
     display: none;
+}
+.model-header{
+  background-image: linear-gradient(30deg,#44a7fd, #1996e0);
+  color: #ffffff;
+  font-weight: bold;
+}
+.model-wrap div{
+  max-width: unset;
 }

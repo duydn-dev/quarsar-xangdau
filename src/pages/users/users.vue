@@ -36,7 +36,7 @@
               <q-th>Tên tài khoản</q-th>
               <q-th>Tên đầy đủ</q-th>
               <q-th>Email</q-th>
-              <q-th>Số điện q-thoại</q-th>
+              <q-th>Số điện thoại</q-th>
               <q-th>Ngày tạo</q-th>
               <q-th class="text-center">Thao tác</q-th>
             </q-tr>
@@ -55,18 +55,18 @@
               <q-td>{{ $formatDate(row.createdDate, "DD/MM/YYYY") }}</q-td>
               <q-td class="text-center">
                 <q-btn
+                  padding="xs"
                   class="q-mr-sm"
-                  color="yellow-7"
+                  color="yellow"
                   icon="mode"
-                  :size="'sm'"
                   title="Sửa"
                   @click="openEdit(row.userId)"
                 />
                 <q-btn
+                  padding="xs"
                   class="q-mr-sm"
                   color="red"
                   icon="highlight_off"
-                  :size="'sm'"
                   title="Xóa"
                 />
               </q-td>
