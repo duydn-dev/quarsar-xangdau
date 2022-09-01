@@ -18,7 +18,7 @@
 
       <q-drawer v-model="miniState" show-if-above class="menu-left-box">
         <q-item class="bg-blue-8 height-70">
-          <img src="/src/assets/logo.svg" class="full-width" />
+          <img src="logo.svg" class="full-width" />
         </q-item>
         <menu-left />
       </q-drawer>

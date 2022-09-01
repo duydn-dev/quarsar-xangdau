@@ -17,7 +17,7 @@
                 style="width: 400px; height: 600px"
               >
                 <q-card-section class="bg-blue-8 text-center">
-                  <img src="/src/assets/logo.svg" class="full-width" />
+                  <img src="logo.svg" class="full-width" />
                   <h4 class="text-h5 text-white q-my-md text-uppercase">
                     Hệ thống quản lý xăng dầu quốc gia
                   </h4>

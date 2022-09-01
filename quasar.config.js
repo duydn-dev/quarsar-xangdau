@@ -54,8 +54,8 @@ module.exports = configure(function (ctx) {
         node: 'node16'
       },
       env: {
-        ApiUrl: ctx.dev ? 'https://localhost:5005/' : 'https://prod.api.com/',
-        StorageUrl: ctx.dev ? 'https://localhost:5005/' : 'https://prod.api.com/',
+        ApiUrl: ctx.dev ? 'https://localhost:5005/' : 'https://localhost:4500/',
+        StorageUrl: ctx.dev ? 'https://localhost:5005/' : 'https://localhost:4500/',
       },
 
       vueRouterMode: 'history', // available values: 'hash', 'history'
@@ -204,7 +204,7 @@ module.exports = configure(function (ctx) {
       builder: {
         // https://www.electron.build/configuration/configuration
 
-        appId: 'quarsar-xangdau'
+        appId: 'Hệ thống quản lý xăng dầu quốc gia'
       }
     },
 

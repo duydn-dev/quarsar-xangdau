@@ -28,7 +28,7 @@
           :rows="rows.values"
           :separator="'cell'"
           hide-pagination
-          :pagination="{rowsPerPage: 0}"
+          :pagination="{ rowsPerPage: 0 }"
         >
           <template v-slot:header>
             <q-tr>
@@ -111,15 +111,33 @@ export default {
     const $q = useQuasar();
 
     const getList = async () => {
-      $q.loading.show({
-        message: "Đang thực hiện, vui lòng chờ trong giây lát...",
-        boxClass: "bg-grey-2 text-grey-9",
-        spinnerColor: "primary",
-      });
-      const {data} = await _this.$userService.getList(request);
-      rows.values = data.data;
-      totalRow.value = data.totalData;
-      $q.loading.hide();
+      try {
+        $q.loading.show({
+          message: "Đang thực hiện, vui lòng chờ trong giây lát...",
+          boxClass: "bg-grey-2 text-grey-9",
+          spinnerColor: "primary",
+        });
+        const { data } = await _this.$userService.getList(request);
+        rows.values = data.data;
+        totalRow.value = data.totalData;
+        $q.loading.hide();
+      } catch (error) {
+        $q.loading.hide();
+        $q.notify({
+          color: "negative",
+          textColor: "white",
+          position: "top",
+          message: error.response.data,
+          icon: "report_problem",
+          timeout: 1500,
+          actions: [
+            {
+              icon: "close",
+              "aria-label": "Dismiss",
+            },
+          ],
+        });
+      }
     };
     const onPageChange = async (value) => {
       request.pageIndex = value;
@@ -146,7 +164,7 @@ export default {
       onPageChange,
       getList,
       openEdit,
-      closeEdit
+      closeEdit,
     };
   },
 };

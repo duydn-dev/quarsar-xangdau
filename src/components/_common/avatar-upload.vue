@@ -19,7 +19,7 @@ export default defineComponent({
         const $q = useQuasar();
         const _this = getCurrentInstance();
         const _config = _this.appContext.config.globalProperties;
-        const defaultImg = 'src/assets/no-image.webp';
+        const defaultImg = 'no-image.webp';
         const previewImg = ref(defaultImg);
         const storageUrl = process.env.StorageUrl;
 
