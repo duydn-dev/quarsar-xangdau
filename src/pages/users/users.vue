@@ -20,6 +20,7 @@
           color="primary"
           icon="add_circle_outline"
           label="Thêm mới"
+          @click="openEdit"
         />
       </div>
       <div class="contain-box-body">

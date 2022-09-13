@@ -2,6 +2,8 @@ import { boot } from 'quasar/wrappers'
 import { date } from 'quasar';
 import userService from './services/user-service';
 import fileService from './services/file-service';
+import subjectService from './services/subject-service';
+import userPositionService from './services/user-position-service';
 import pager from 'components/_share/pager.vue';
 
 export default boot(({ app }) => {
@@ -14,5 +16,7 @@ export default boot(({ app }) => {
     }
     app.config.globalProperties.$userService = userService;
     app.config.globalProperties.$fileService = fileService;
+    app.config.globalProperties.$subjectService = subjectService;
+    app.config.globalProperties.$userPositionService = userPositionService;
 })
 
